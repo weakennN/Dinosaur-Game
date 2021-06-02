@@ -16,9 +16,9 @@ public class Dinosaur extends GameObject {
     private boolean running;
     private boolean crouching;
 
-    public Dinosaur(String tag, Transform transform) {
+    public Dinosaur(String tag) {
 
-        super(tag, transform);
+        super(tag);
 
         this.isDead = false;
         this.jumping = false;

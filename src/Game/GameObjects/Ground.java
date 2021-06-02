@@ -11,8 +11,8 @@ import Game.Validator.Validator;
 
 public class Ground extends GameObject {
 
-    public Ground(String tag, Transform transform) {
-        super(tag, transform);
+    public Ground(String tag) {
+        super(tag);
 
     }
 
@@ -39,7 +39,9 @@ public class Ground extends GameObject {
             Collider dinosaurCollider = (Collider) other.getComponent(Collider.class);
 
             if (!Validator.isNull(dinosaur.getRigidbody()) && !Validator.isNull(groundCollider) && !Validator.isNull(dinosaurCollider)) {
-                dinosaur.getTransform().getPos().y = groundCollider.getPos().y - dinosaurCollider.getSize().y;
+
+                Transform transform = (Transform) dinosaur.getComponent(Transform.class);
+                transform.getPos().y = groundCollider.getPos().y - dinosaurCollider.getSize().y;
                 dinosaur.getRigidbody().getVel().y = 0;
                 dinosaur.getRigidbody().getAcc().y = 0;
                 dinosaur.setJumping(false);

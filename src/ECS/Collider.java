@@ -18,11 +18,11 @@ public class Collider extends Component {
     public Collider(GameObject gameObject, double sizeX, double sizeY) {
         super(gameObject);
 
-        this.pos = gameObject.getTransform().getPos();
+        this.pos = ((Transform) gameObject.getComponent(Transform.class)).getPos();
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         colliders.add(this);
-        Designer.gc.strokeRect(this.pos.x,this.pos.y,sizeX,sizeY);
+        Designer.gc.strokeRect(this.pos.x, this.pos.y, sizeX, sizeY);
 
     }
 

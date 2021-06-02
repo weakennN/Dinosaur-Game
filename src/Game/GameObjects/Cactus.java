@@ -1,11 +1,9 @@
 package Game.GameObjects;
 
-import ECS.Transform;
-
 public class Cactus extends GameObject {
 
-    public Cactus(String tag, Transform transform, String animation) {
-        super(tag, transform);
+    public Cactus(String tag, String animation) {
+        super(tag);
 
         super.setCurrentAnimation(animation);
     }

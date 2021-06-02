@@ -1,6 +1,7 @@
 package Game.GameManager;
 
 import ECS.Rigidbody;
+import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Dinosaur.Dinosaur;
 import Game.Validator.Validator;
@@ -15,7 +16,7 @@ public class GameManager {
     public GameManager(Dinosaur dinosaur) {
 
         this.dinosaur = dinosaur;
-        this.speedingPos = dinosaur.getTransform().getPos().x + 2000;
+        this.speedingPos = ((Transform) dinosaur.getComponent(Transform.class)).getPos().x + 2000;
         this.score = new Score();
     }
 
@@ -23,7 +24,7 @@ public class GameManager {
 
         Designer.scoreLabel.setText(this.score.getPoints() + "");
 
-        if (dinosaur.getTransform().getPos().x > this.speedingPos
+        if (((Transform) dinosaur.getComponent(Transform.class)).getPos().x > this.speedingPos
                 && !Validator.isNull(this.dinosaur.getRigidbody()) && this.dinosaur.getRigidbody().getVel().x <= 15.5) {
 
             Rigidbody rigidbody = dinosaur.getRigidbody();

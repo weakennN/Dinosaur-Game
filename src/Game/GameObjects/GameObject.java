@@ -13,15 +13,13 @@ import java.util.List;
 public abstract class GameObject {
 
     private List<Component> components;
-    private Transform transform;
     private String tag;
     private boolean active;
     private Image currentAnimation;
 
-    public GameObject(String tag, Transform transform) {
+    public GameObject(String tag) {
 
         this.tag = tag;
-        this.transform = transform;
         this.components = new ArrayList<>();
         DinosaurGame.gameObjects.add(this);
         this.active = true;
@@ -79,10 +77,6 @@ public abstract class GameObject {
     public Image render() {
 
         return this.currentAnimation;
-    }
-
-    public Transform getTransform() {
-        return transform;
     }
 
     public String getTag() {

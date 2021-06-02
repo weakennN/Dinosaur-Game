@@ -1,5 +1,6 @@
 package Engine;
 
+import ECS.Transform;
 import Game.Camera.Camera;
 import Game.GameObjects.GameObject;
 import Game.Game;
@@ -49,7 +50,7 @@ public class GameEngine extends Engine {
                     if (gameObject.isActive()) {
 
                         gameObject.update();
-                        Renderer.render(gameObject.render(), gameObject.getTransform());
+                        Renderer.render(gameObject.render(), (Transform) gameObject.getComponent(Transform.class));
                     }
 
                 }

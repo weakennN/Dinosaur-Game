@@ -6,8 +6,8 @@ import Game.Animator.GlobalAnimations;
 
 public class Bat extends GameObject {
 
-    public Bat(String tag, Transform transform) {
-        super(tag, transform);
+    public Bat(String tag) {
+        super(tag);
 
     }
 

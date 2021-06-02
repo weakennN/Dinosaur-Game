@@ -2,6 +2,7 @@ package Game;
 
 import ECS.Collider;
 import ECS.Rigidbody;
+import ECS.Transform;
 import Engine.GameEngine;
 import Game.Camera.GameCamera;
 import Game.Common.GlobalVariables;
@@ -57,12 +58,17 @@ public class DinosaurGame extends Game {
 
                     Collider collider = (Collider) gm.getComponent(Collider.class);
 
-                    if (gm.getTransform().getPos().x + collider.getSize().x <= (this.dinosaur.getTransform().getPos().x - 300)) {
+                    Transform gmTransform = (Transform) gm.getComponent(Transform.class);
+                    Transform dinosaurTransform = (Transform) this.dinosaur.getComponent(Transform.class);
+
+                    if (gmTransform.getPos().x + collider.getSize().x <= (dinosaurTransform.getPos().x - 300)) {
 
                         gm.destroy();
                     }
 
                 }
+
+
 
             }
 

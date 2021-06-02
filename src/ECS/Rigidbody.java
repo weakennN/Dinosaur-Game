@@ -14,7 +14,7 @@ public class Rigidbody extends Component {
 
         super(gameObject);
 
-        this.pos = gameObject.getTransform().getPos();
+        this.pos = ((Transform) gameObject.getComponent(Transform.class)).getPos();
         this.vel = new Vector2();
         this.acc = new Vector2();
     }
