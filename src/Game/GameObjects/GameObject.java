@@ -97,9 +97,14 @@ public abstract class GameObject {
         this.active = b;
     }
 
-    public Image getCurrentAnimation(){
+    public Image getCurrentAnimation() {
 
         return this.currentAnimation;
+    }
+
+    public Transform getTransform() {
+
+        return (Transform) this.getComponent(Transform.class);
     }
 
 }

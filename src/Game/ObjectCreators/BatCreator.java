@@ -28,8 +28,7 @@ public class BatCreator extends GameObjectCreator {
         Bat bat = new Bat(GlobalVariables.BAT_TAG);
         bat.addComponent(new Transform(new Vector2(posX, this.randomPos.get(random.nextInt(0, this.randomPos.size()))), bat));
         bat.addComponent(new Rigidbody(bat, false));
-        bat.addComponent(new Collider(bat, GlobalVariables.BAT_SIZE_X, GlobalVariables.BAT_SIZE_Y));
-        bat.setActive(true);
+        bat.addComponent(new Collider(bat, GlobalVariables.BAT_SIZE_X, GlobalVariables.BAT_SIZE_Y, bat.getTransform()));
         bat.start();
     }
 

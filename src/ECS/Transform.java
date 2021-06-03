@@ -15,6 +15,11 @@ public class Transform extends Component {
         this.scale = new Vector2(1, 1);
     }
 
+    public Transform(GameObject gameObject) {
+
+        this(new Vector2(0,0), gameObject);
+    }
+
     public Vector2 getPos() {
 
         return this.pos;

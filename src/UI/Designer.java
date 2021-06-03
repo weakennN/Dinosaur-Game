@@ -2,6 +2,7 @@ package UI;
 
 import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
@@ -26,6 +28,7 @@ public class Designer {
     public static Pane root;
     public static Button restartButton = new Button();
     public static Button continueButton = new Button();
+    public static HBox buttonsBox = new HBox(20);
     public static ImageView gameOverImage;
 
     public static Scene createScene() {
@@ -35,13 +38,13 @@ public class Designer {
         gc = canvas.getGraphicsContext2D();
 
         gameOverImage = new ImageView(GlobalAnimations.IMAGE_PATH + GlobalAnimations.GAME_OVER);
-        initLabels();
 
         scene = new Scene(root, 1920, 1080);
 
         initButtons();
+        initLabels();
 
-        root.getChildren().addAll(canvas, restartButton, gameOverImage, scoreLabel, highScore,continueButton);
+        root.getChildren().addAll(canvas, restartButton, gameOverImage,buttonsBox,continueButton);
 
         gameOverImage.setLayoutY(restartButton.getLayoutY() - 80);
         gameOverImage.setLayoutX(restartButton.getLayoutX() - (gameOverImage.getImage().getWidth() / 2) + 20);
@@ -77,7 +80,10 @@ public class Designer {
         scoreLabel = new Label();
         highScore = new Label(GlobalVariables.HIGH_SCORE_LABEL_DEFAULT_TEXT);
         highScore.setVisible(false);
-        highScore.setLayoutX(500);
+
+        buttonsBox.getChildren().addAll(scoreLabel,highScore);
+        buttonsBox.setAlignment(Pos.CENTER);
+        buttonsBox.setLayoutY(5);
         try {
             scoreLabel.setFont(Font.loadFont(new FileInputStream(file),15));
             highScore.setFont(Font.loadFont(new FileInputStream(file),15));

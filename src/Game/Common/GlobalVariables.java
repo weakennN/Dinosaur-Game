@@ -23,8 +23,8 @@ public class GlobalVariables {
     public final static double TRIPLE_CACTUS_SIZE_Y = 65;
     public final static double DEFAULT_DINOSAUR_POS_X = 0;
     public final static double DEFAULT_DINOSAUR_POS_Y = 565;
-    public final static double BAT_SIZE_X = 50;
-    public final static double BAT_SIZE_Y = 35;
+    public final static double BAT_SIZE_X = 45;
+    public final static double BAT_SIZE_Y = 25;
     public final static double DINOSAUR_CROUCH_SIZE_X = 60;
     public final static double DINOSAUR_CROUCH_SIZE_Y = 40;
     public final static String HIGH_SCORE_LABEL_DEFAULT_TEXT = "HI ";

@@ -40,8 +40,7 @@ public class Ground extends GameObject {
 
             if (!Validator.isNull(dinosaur.getRigidbody()) && !Validator.isNull(groundCollider) && !Validator.isNull(dinosaurCollider)) {
 
-                Transform transform = (Transform) dinosaur.getComponent(Transform.class);
-                transform.getPos().y = groundCollider.getPos().y - dinosaurCollider.getSize().y;
+                dinosaur.getTransform().getPos().y = groundCollider.getPos().y - dinosaurCollider.getSize().y;
                 dinosaur.getRigidbody().getVel().y = 0;
                 dinosaur.getRigidbody().getAcc().y = 0;
                 dinosaur.setJumping(false);

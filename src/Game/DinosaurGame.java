@@ -57,18 +57,13 @@ public class DinosaurGame extends Game {
                 if (!gm.getTag().equals(GlobalVariables.DINOSAUR_TAG)) {
 
                     Collider collider = (Collider) gm.getComponent(Collider.class);
-
-                    Transform gmTransform = (Transform) gm.getComponent(Transform.class);
-                    Transform dinosaurTransform = (Transform) this.dinosaur.getComponent(Transform.class);
-
-                    if (gmTransform.getPos().x + collider.getSize().x <= (dinosaurTransform.getPos().x - 300)) {
+                    
+                    if (gm.getTransform().getPos().x + collider.getSize().x <= (this.dinosaur.getTransform().getPos().x - 300)) {
 
                         gm.destroy();
                     }
 
                 }
-
-
 
             }
 

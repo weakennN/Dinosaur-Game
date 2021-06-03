@@ -15,8 +15,6 @@ public class CactusCreator extends GameObjectCreator {
     private double sizeY;
     private ThreadLocalRandom random;
 
-    // TODO: later on add logic for random sizes etc
-
     public CactusCreator(double sizeX, double sizeY, String animation) {
 
         super();
@@ -32,18 +30,18 @@ public class CactusCreator extends GameObjectCreator {
 
         Cactus cactus = new Cactus(GlobalVariables.CACTUS_TAG, this.animation);
         cactus.addComponent(new Transform(new Vector2(posX, GlobalVariables.GROUND_POS_Y + 20 - this.sizeY), cactus));
-        cactus.addComponent(new Collider(cactus, this.sizeX, this.sizeY));
-        Transform transform = (Transform) cactus.getComponent(Transform.class);
+        cactus.addComponent(new Collider(cactus, this.sizeX, this.sizeY, cactus.getTransform()));
+        Transform transform = cactus.getTransform();
         double randomScale = this.getRandomScale();
         transform.setScale(new Vector2(randomScale, randomScale));
         transform.setPos(new Vector2(posX, GlobalVariables.GROUND_POS_Y + 20 - ((Collider) cactus.getComponent(Collider.class)).getSize().y));
-        cactus.setActive(true);
         cactus.start();
+
     }
 
     private double getRandomScale() {
 
-        return this.random.nextDouble(0.6, 1);
+        return this.random.nextDouble(0.6, 1.2);
     }
 
 }

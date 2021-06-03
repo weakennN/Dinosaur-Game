@@ -35,8 +35,7 @@ public class LevelMaker {
         Transform transform = new Transform(new Vector2(GlobalVariables.DEFAULT_DINOSAUR_POS_X, GlobalVariables.DEFAULT_DINOSAUR_POS_Y),dinosaur);
         this.dinosaur.addComponent(transform);
         this.dinosaur.addComponent(new Rigidbody(this.dinosaur));
-        this.dinosaur.addComponent(new Collider(this.dinosaur, GlobalVariables.DINOSAUR_SIZE_X, GlobalVariables.DINOSAUR_SIZE_Y));
-        this.dinosaur.setActive(true);
+        this.dinosaur.addComponent(new Collider(this.dinosaur, GlobalVariables.DINOSAUR_SIZE_X, GlobalVariables.DINOSAUR_SIZE_Y,dinosaur.getTransform()));
 
         this.createGround(0, GlobalVariables.GROUND_POS_Y);
     }
@@ -59,7 +58,6 @@ public class LevelMaker {
         Transform transform = new Transform(new Vector2(posX, posY), ground);
         ground.addComponent(transform);
         ground.addComponent(new Collider(ground, GlobalVariables.GROUND_SIZE_X, GlobalVariables.GROUND_SIZE_Y, new Transform(new Vector2(posX, posY + 20), ground)));
-        ground.setActive(true);
         ground.start();
     }
 

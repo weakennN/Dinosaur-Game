@@ -1,7 +1,6 @@
 package ECS;
 
 import Game.GameObjects.GameObject;
-import UI.Designer;
 import mikera.vectorz.Vector2;
 
 import java.util.ArrayList;
@@ -15,21 +14,14 @@ public class Collider extends Component {
     private Vector2 halfSize;
     public static List<Collider> colliders = new ArrayList<>();
 
-    public Collider(GameObject gameObject, double sizeX, double sizeY) {
-        super(gameObject);
-
-        this.pos = ((Transform) gameObject.getComponent(Transform.class)).getPos();
-        this.size = new Vector2(sizeX, sizeY);
-        this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
-        colliders.add(this);
-        Designer.gc.strokeRect(this.pos.x, this.pos.y, sizeX, sizeY);
-
-    }
-
     public Collider(GameObject gameObject, double sizeX, double sizeY, Transform transform) {
 
-        this(gameObject, sizeX, sizeY);
+        super(gameObject);
         this.pos = transform.getPos();
+        this.size = new Vector2(sizeX, sizeY);
+        this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
+        this.calculateCenter();
+        colliders.add(this);
     }
 
     @Override
@@ -108,7 +100,7 @@ public class Collider extends Component {
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.size.x = sizeX;
         this.size.y = sizeY;
-
+        this.calculateCenter();
     }
 
 }
