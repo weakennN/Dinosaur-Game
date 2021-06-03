@@ -4,6 +4,8 @@ Chrome Offline Dinosaur game implemented in java
 ___
 ## Controls
 
+**Press `W` to start**
+
 **Jump:** `W`
 
 **Crouch:** `S`
@@ -12,7 +14,7 @@ ___
 
 ___
 
-##In-Game Screenshots
+## In-Game Screenshots
 
 ![](src/Game/Resources/In%20Game%20Screenshots/Screenshot_1.png)
 
