@@ -2,7 +2,6 @@ package Game;
 
 import ECS.Collider;
 import ECS.Rigidbody;
-import ECS.Transform;
 import Engine.GameEngine;
 import Game.Camera.GameCamera;
 import Game.Common.GlobalVariables;

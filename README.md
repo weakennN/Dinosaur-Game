@@ -1,6 +1,6 @@
-## Dinosaur Game
+# Dinosaur Game
 
-Chrome Offline Dinosaur game implemented with Java
+A Java version of Chrome Offline Dinosaur game
 
 ## Controls
 
