@@ -1,7 +1,7 @@
 ## Dinosaur Game
 
-Chrome Offline Dinosaur game implemented in java
-___
+Chrome Offline Dinosaur game implemented with Java
+
 ## Controls
 
 **Press `W` to start**
@@ -12,7 +12,6 @@ ___
 
 **Pause:** `ESCAPE`
 
-___
 
 ## In-Game Screenshots
 
