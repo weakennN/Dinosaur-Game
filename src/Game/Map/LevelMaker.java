@@ -38,7 +38,7 @@ public class LevelMaker {
         this.dinosaur.addComponent(transform);
         this.dinosaur.addComponent(new Rigidbody(this.dinosaur));
         this.dinosaur.addComponent(new Collider(this.dinosaur, GlobalVariables.DINOSAUR_SIZE_X, GlobalVariables.DINOSAUR_SIZE_Y, dinosaur.getTransform()));
-        this.dinosaur.addComponent(new SpriteRenderer(dinosaur, GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.IMAGE_PATH + "testSprite.png")));
+        this.dinosaur.addComponent(new SpriteRenderer(dinosaur, GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.DINO_SPRITE)));
 
         AnimationController animationController = new AnimationController();
         animationController.createAnimation("running", new Animation(List.of(this.dinosaur.getComponent(SpriteRenderer.class).getSprites().get(2),
@@ -46,8 +46,8 @@ public class LevelMaker {
         animationController.createAnimation("idleAndJumping", new Animation(List.of(this.dinosaur.getComponent(SpriteRenderer.class).
                 getSpriteSheet().getSprites().get(0)), 13, this.dinosaur));
         animationController.createAnimation("dead", new Animation(List.of(this.dinosaur.getComponent(SpriteRenderer.class).getSprites().get(4)), 13, this.dinosaur));
-        animationController.createAnimation("crouch", new Animation(List.of(GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.IMAGE_PATH + "dinoCrouch.png").getSprites().get(0),
-                GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.IMAGE_PATH + "dinoCrouch.png").getSprites().get(1)), 13, this.dinosaur));
+        animationController.createAnimation("crouch", new Animation(List.of(GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.DINO_CROUCH_SPRITE).getSprites().get(0),
+                GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.DINO_CROUCH_SPRITE).getSprites().get(1)), 13, this.dinosaur));
 
         this.dinosaur.addComponent(new Animator(this.dinosaur, animationController));
         this.dinosaur.getComponent(Animator.class).getAnimationController().playAnimation("idleAndJumping");
@@ -73,7 +73,7 @@ public class LevelMaker {
         Transform transform = new Transform(new Vector2(posX, posY), ground);
         ground.addComponent(transform);
         ground.addComponent(new Collider(ground, GlobalVariables.GROUND_SIZE_X, GlobalVariables.GROUND_SIZE_Y, new Transform(new Vector2(posX, posY + 20), ground)));
-        ground.addComponent(new SpriteRenderer(ground,new Sprite(new Image(GlobalAnimations.IMAGE_PATH + GlobalAnimations.GROUND))));
+        ground.addComponent(new SpriteRenderer(ground, new Sprite(new Image(GlobalAnimations.IMAGE_PATH + GlobalAnimations.GROUND))));
         ground.setActive(true);
         ground.start();
     }

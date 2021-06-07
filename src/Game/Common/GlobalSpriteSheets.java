@@ -12,8 +12,8 @@ public class GlobalSpriteSheets {
 
     public static void initSpriteSheets() {
 
-        spriteSheets.put(GlobalAnimations.IMAGE_PATH + "batSprite.png", new SpriteSheet(GlobalAnimations.IMAGE_PATH + "batSprite.png", 50, 35, 0));
-        spriteSheets.put(GlobalAnimations.IMAGE_PATH + "testSprite.png", new SpriteSheet(GlobalAnimations.IMAGE_PATH + "testSprite.png", 50, 53, 0));
-        spriteSheets.put(GlobalAnimations.IMAGE_PATH + "dinoCrouch.png", new SpriteSheet(GlobalAnimations.IMAGE_PATH + "dinoCrouch.png", 65, 39, 0));
+        spriteSheets.put(GlobalAnimations.BAT_SPRITE, new SpriteSheet(GlobalAnimations.BAT_SPRITE, 50, 35, 0));
+        spriteSheets.put(GlobalAnimations.DINO_SPRITE, new SpriteSheet(GlobalAnimations.DINO_SPRITE, 50, 53, 0));
+        spriteSheets.put(GlobalAnimations.DINO_CROUCH_SPRITE, new SpriteSheet(GlobalAnimations.DINO_CROUCH_SPRITE, 65, 39, 0));
     }
 }

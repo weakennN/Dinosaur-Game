@@ -10,5 +10,8 @@ public class GlobalAnimations {
     public final static String GROUND = "ground.png";
     public final static String GAME_OVER = "gameOver.png";
     public final static String CONTINUE_BUTTON = "continueButton.png";
+    public final static String DINO_CROUCH_SPRITE = IMAGE_PATH + "dinoCrouchSprite.png";
+    public final static String DINO_SPRITE = IMAGE_PATH + "dinoSprite.png";
+    public final static String BAT_SPRITE = IMAGE_PATH + "batSprite.png";
 
 }
