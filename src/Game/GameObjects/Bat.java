@@ -1,8 +1,6 @@
 package Game.GameObjects;
 
 import ECS.Rigidbody;
-import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 
 public class Bat extends GameObject {
 
@@ -14,9 +12,9 @@ public class Bat extends GameObject {
     @Override
     public void start() {
 
-        super.setCurrentAnimation(GlobalAnimations.BAT);
+        super.start();
 
-        Rigidbody rigidbody = (Rigidbody) super.getComponent(Rigidbody.class);
+        Rigidbody rigidbody = super.getComponent(Rigidbody.class);
         rigidbody.getVel().x = -2;
     }
 

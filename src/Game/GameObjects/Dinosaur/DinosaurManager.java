@@ -1,5 +1,6 @@
 package Game.GameObjects.Dinosaur;
 
+import ECS.Animator;
 import ECS.Collider;
 import ECS.Rigidbody;
 import Game.Animator.GlobalAnimations;
@@ -18,18 +19,19 @@ public class DinosaurManager {
 
     public void killDinosaur() {
 
-        this.dinosaur.setCurrentAnimation(GlobalAnimations.DINOSAUR_DEAD);
+        this.dinosaur.getComponent(Animator.class).getAnimationController().playAnimation("dead");
         SoundsManager.playSound(Sounds.DINOSAUR_DEAD);
         this.dinosaur.setDead(true);
         this.dinosaur.removeComponent(Rigidbody.class);
-        Collider.colliders.remove((Collider) dinosaur.getComponent(Collider.class));
+        Collider.colliders.remove(dinosaur.getComponent(Collider.class));
         this.dinosaur.removeComponent(Collider.class);
+        this.dinosaur.removeComponent(Animator.class);
 
     }
 
     public void changeCollider(double sizeX, double sizeY) {
 
-        Collider collider = (Collider) this.dinosaur.getComponent(Collider.class);
+        Collider collider = this.dinosaur.getComponent(Collider.class);
 
         if (!Validator.isNull(collider)) {
 
@@ -43,8 +45,7 @@ public class DinosaurManager {
         if (this.dinosaur.isRunning()) {
 
             if (!DinosaurState.running) {
-
-                this.dinosaur.setCurrentAnimation(GlobalAnimations.DINOSAUR_RUNNING);
+                this.dinosaur.getComponent(Animator.class).getAnimationController().playAnimation("running");
                 DinosaurState.running = true;
             }
 

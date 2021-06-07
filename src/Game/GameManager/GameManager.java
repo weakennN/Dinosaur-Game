@@ -16,7 +16,7 @@ public class GameManager {
     public GameManager(Dinosaur dinosaur) {
 
         this.dinosaur = dinosaur;
-        this.speedingPos = ((Transform) dinosaur.getComponent(Transform.class)).getPos().x + 2000;
+        this.speedingPos = dinosaur.getComponent(Transform.class).getPos().x + 2000;
         this.score = new Score();
     }
 
@@ -24,8 +24,8 @@ public class GameManager {
 
         Designer.scoreLabel.setText(this.score.getPoints() + "");
 
-        if (((Transform) dinosaur.getComponent(Transform.class)).getPos().x > this.speedingPos
-                && !Validator.isNull(this.dinosaur.getRigidbody()) && this.dinosaur.getRigidbody().getVel().x <= 15.5) {
+        if ((dinosaur.getComponent(Transform.class).getPos().x > this.speedingPos
+                && !Validator.isNull(this.dinosaur.getRigidbody()) && this.dinosaur.getRigidbody().getVel().x <= 15.5)) {
 
             Rigidbody rigidbody = dinosaur.getRigidbody();
             rigidbody.getVel().x += 0.5;

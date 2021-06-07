@@ -1,15 +1,17 @@
 package Game.Map;
 
-import ECS.Collider;
-import ECS.Rigidbody;
-import ECS.Transform;
+import ECS.*;
+import Game.Animator.GlobalAnimations;
+import Game.Common.GlobalSpriteSheets;
 import Game.Common.GlobalVariables;
 import Game.GameObjectFactory.GameObjectFactory;
 import Game.GameObjects.Dinosaur.Dinosaur;
 import Game.GameObjects.Ground;
 import UI.Designer;
+import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
+import java.awt.*;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -22,6 +24,7 @@ public class LevelMaker {
 
     public LevelMaker() {
 
+        GlobalSpriteSheets.initSpriteSheets();
         this.gameObjectFactory = new GameObjectFactory();
         this.spaceInBetween = List.of(Designer.scene.getWidth(),
                 Designer.scene.getWidth() + 100, Designer.scene.getWidth() + 250);
@@ -30,12 +33,24 @@ public class LevelMaker {
 
     public void initStartObjects() {
 
-
         this.dinosaur = new Dinosaur(GlobalVariables.DINOSAUR_TAG);
-        Transform transform = new Transform(new Vector2(GlobalVariables.DEFAULT_DINOSAUR_POS_X, GlobalVariables.DEFAULT_DINOSAUR_POS_Y),dinosaur);
+        Transform transform = new Transform(new Vector2(GlobalVariables.DEFAULT_DINOSAUR_POS_X, GlobalVariables.DEFAULT_DINOSAUR_POS_Y), dinosaur);
         this.dinosaur.addComponent(transform);
         this.dinosaur.addComponent(new Rigidbody(this.dinosaur));
-        this.dinosaur.addComponent(new Collider(this.dinosaur, GlobalVariables.DINOSAUR_SIZE_X, GlobalVariables.DINOSAUR_SIZE_Y,dinosaur.getTransform()));
+        this.dinosaur.addComponent(new Collider(this.dinosaur, GlobalVariables.DINOSAUR_SIZE_X, GlobalVariables.DINOSAUR_SIZE_Y, dinosaur.getTransform()));
+        this.dinosaur.addComponent(new SpriteRenderer(dinosaur, GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.IMAGE_PATH + "testSprite.png")));
+
+        AnimationController animationController = new AnimationController();
+        animationController.createAnimation("running", new Animation(List.of(this.dinosaur.getComponent(SpriteRenderer.class).getSprites().get(2),
+                this.dinosaur.getComponent(SpriteRenderer.class).getSprites().get(3)), 13, this.dinosaur));
+        animationController.createAnimation("idleAndJumping", new Animation(List.of(this.dinosaur.getComponent(SpriteRenderer.class).
+                getSpriteSheet().getSprites().get(0)), 13, this.dinosaur));
+        animationController.createAnimation("dead", new Animation(List.of(this.dinosaur.getComponent(SpriteRenderer.class).getSprites().get(4)), 13, this.dinosaur));
+        animationController.createAnimation("crouch", new Animation(List.of(GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.IMAGE_PATH + "dinoCrouch.png").getSprites().get(0),
+                GlobalSpriteSheets.spriteSheets.get(GlobalAnimations.IMAGE_PATH + "dinoCrouch.png").getSprites().get(1)), 13, this.dinosaur));
+
+        this.dinosaur.addComponent(new Animator(this.dinosaur, animationController));
+        this.dinosaur.getComponent(Animator.class).getAnimationController().playAnimation("idleAndJumping");
 
         this.createGround(0, GlobalVariables.GROUND_POS_Y);
     }
@@ -58,6 +73,8 @@ public class LevelMaker {
         Transform transform = new Transform(new Vector2(posX, posY), ground);
         ground.addComponent(transform);
         ground.addComponent(new Collider(ground, GlobalVariables.GROUND_SIZE_X, GlobalVariables.GROUND_SIZE_Y, new Transform(new Vector2(posX, posY + 20), ground)));
+        ground.addComponent(new SpriteRenderer(ground,new Sprite(new Image(GlobalAnimations.IMAGE_PATH + GlobalAnimations.GROUND))));
+        ground.setActive(true);
         ground.start();
     }
 

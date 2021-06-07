@@ -1,18 +1,22 @@
 package Renderer;
 
+import ECS.SpriteRenderer;
 import ECS.Transform;
 import Engine.GameEngine;
+import Game.GameObjects.GameObject;
 import UI.Designer;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Renderer {
 
-    public static void render(Image image, Transform transform) {
+    public static void render(GameObject gameObject) {
 
-        Designer.gc.drawImage(image, transform.getPos().x, transform.getPos().y,
-                image.getWidth() * transform.getScale().x, image.getHeight() * transform.getScale().y);
+        SpriteRenderer spriteRenderer = gameObject.getComponent(SpriteRenderer.class);
+        Transform transform = gameObject.getTransform();
 
+        Designer.gc.drawImage(spriteRenderer.getSprite().getTexture(), transform.getPos().x, transform.getPos().y,
+                spriteRenderer.getSprite().getTexture().getWidth() * transform.getScale().x,
+                spriteRenderer.getSprite().getTexture().getHeight() * transform.getScale().y);
     }
 
     public static void clear() {

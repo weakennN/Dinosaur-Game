@@ -1,6 +1,8 @@
 package Game.GameObjects.Dinosaur;
 
+import ECS.Animator;
 import ECS.Rigidbody;
+import ECS.SpriteRenderer;
 import ECS.Transform;
 import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
@@ -24,7 +26,8 @@ public class Dinosaur extends GameObject {
         this.jumping = false;
         this.idle = true;
         this.running = false;
-        super.setCurrentAnimation(GlobalAnimations.DinosaurIdle);
+        super.setActive(true);
+        //    super.setCurrentAnimation(GlobalAnimations.DinosaurIdle);
         DinosaurState.running = true;
         this.manager = new DinosaurManager(this);
     }
@@ -32,9 +35,12 @@ public class Dinosaur extends GameObject {
     @Override
     public void start() {
 
+        super.start();
         this.idle = false;
         this.running = false;
         this.getRigidbody().getVel().x = 2.5;
+      //  super.getComponent(Animator.class).setAnimation(2, 3);
+
     }
 
     @Override
@@ -55,7 +61,9 @@ public class Dinosaur extends GameObject {
 
     public void jump() {
 
-        super.setCurrentAnimation(GlobalAnimations.DinosaurIdle);
+        // super.setCurrentAnimation(GlobalAnimations.DinosaurIdle);
+        //super.getComponent(Animator.class).setAnimation(0, 0);
+        super.getComponent(Animator.class).getAnimationController().playAnimation("idleAndJumping");
         this.getRigidbody().getVel().y = -2.5;
         this.jumping = true;
         this.running = false;
@@ -64,7 +72,7 @@ public class Dinosaur extends GameObject {
 
     public Rigidbody getRigidbody() {
 
-        return (Rigidbody) super.getComponent(Rigidbody.class);
+        return super.getComponent(Rigidbody.class);
     }
 
     public boolean isDead() {

@@ -1,6 +1,5 @@
 package Game.Map;
 
-import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Dinosaur.Dinosaur;
 import UI.Designer;

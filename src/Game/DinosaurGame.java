@@ -55,7 +55,7 @@ public class DinosaurGame extends Game {
 
                 if (!gm.getTag().equals(GlobalVariables.DINOSAUR_TAG)) {
 
-                    Collider collider = (Collider) gm.getComponent(Collider.class);
+                    Collider collider = gm.getComponent(Collider.class);
 
                     if (gm.getTransform().getPos().x + collider.getSize().x <= (this.dinosaur.getTransform().getPos().x - 300)) {
 

@@ -1,12 +1,8 @@
 package Game.GameObjects;
 
 import ECS.Collider;
-import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Dinosaur.Dinosaur;
-import Game.GameObjects.Dinosaur.DinosaurState;
-import Game.GameState;
 import Game.Validator.Validator;
 
 public class Ground extends GameObject {
@@ -19,7 +15,7 @@ public class Ground extends GameObject {
     @Override
     public void start() {
 
-        super.setCurrentAnimation(GlobalAnimations.GROUND);
+        super.start();
     }
 
     @Override
@@ -35,8 +31,8 @@ public class Ground extends GameObject {
 
             Dinosaur dinosaur = (Dinosaur) other;
 
-            Collider groundCollider = (Collider) super.getComponent(Collider.class);
-            Collider dinosaurCollider = (Collider) other.getComponent(Collider.class);
+            Collider groundCollider = super.getComponent(Collider.class);
+            Collider dinosaurCollider = other.getComponent(Collider.class);
 
             if (!Validator.isNull(dinosaur.getRigidbody()) && !Validator.isNull(groundCollider) && !Validator.isNull(dinosaurCollider)) {
 

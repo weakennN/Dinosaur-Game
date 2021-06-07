@@ -9,7 +9,7 @@ public class GlobalVariables {
     public final static String CACTUS_TAG = "cactus";
     public final static String BAT_TAG = "bat";
     public final static String GROUND_TAG = "ground";
-    public final static double DINOSAUR_SIZE_X = 45;
+    public final static double DINOSAUR_SIZE_X = 50;
     public final static double DINOSAUR_SIZE_Y = 50;
     public final static double GROUND_SIZE_Y = 50;
     public final static double SINGLE_CACTUS_SIZE_X = 28;

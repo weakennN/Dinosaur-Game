@@ -5,10 +5,16 @@ import Game.GameObjects.GameObject;
 public abstract class Component {
 
     private GameObject gameObject;
+    private boolean active;
 
     public Component(GameObject gameObject) {
 
         this.gameObject = gameObject;
+        this.active = false;
+    }
+
+    public void start() {
+        this.active = true;
     }
 
     public abstract void update();
@@ -18,4 +24,11 @@ public abstract class Component {
         return this.gameObject;
     }
 
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setActive(boolean b) {
+        this.active = b;
+    }
 }

@@ -1,11 +1,10 @@
 package Game.GameObjects;
 
+import ECS.Animator;
 import ECS.Collider;
 import ECS.Component;
 import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 import Game.DinosaurGame;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +14,26 @@ public abstract class GameObject {
     private List<Component> components;
     private String tag;
     private boolean active;
-    private Image currentAnimation;
 
     public GameObject(String tag) {
 
         this.tag = tag;
         this.components = new ArrayList<>();
         DinosaurGame.gameObjects.add(this);
-        this.active = true;
     }
 
-    public abstract void start();
+    public void start() {
+
+        for (int i = 0; i < this.components.size(); i++) {
+
+            Component component = this.components.get(i);
+
+            if (!component.isActive()) {
+
+                component.setActive(true);
+            }
+        }
+    }
 
     public abstract void update();
 
@@ -36,13 +44,13 @@ public abstract class GameObject {
         this.components.add(component);
     }
 
-    public <T extends Component> Component getComponent(Class<T> component) {
+    public <T extends Component> T getComponent(Class<T> component) {
 
         for (Component c : components) {
 
             if (component.isAssignableFrom(c.getClass())) {
 
-                return c;
+                return component.cast(c);
             }
 
         }
@@ -53,7 +61,6 @@ public abstract class GameObject {
     public <T extends Component> void removeComponent(Class<T> component) {
 
         components.removeIf(c -> component.isAssignableFrom(c.getClass()));
-
     }
 
     protected void updateComponents() {
@@ -69,14 +76,14 @@ public abstract class GameObject {
 
     public void destroy() {
 
-        Collider.colliders.remove((Collider) this.getComponent(Collider.class));
+        Collider.colliders.remove(this.getComponent(Collider.class));
         DinosaurGame.gameObjects.remove(this);
+
+        if (this.getComponent(Animator.class) != null){
+            this.getComponent(Animator.class).getAnimationController().stop();
+        }
+
         this.components.clear();
-    }
-
-    public Image render() {
-
-        return this.currentAnimation;
     }
 
     public String getTag() {
@@ -87,24 +94,13 @@ public abstract class GameObject {
         return active;
     }
 
-    public void setCurrentAnimation(String animation) {
-
-        this.currentAnimation = new Image(GlobalAnimations.IMAGE_PATH + animation);
-    }
-
     public void setActive(boolean b) {
 
         this.active = b;
     }
 
-    public Image getCurrentAnimation() {
-
-        return this.currentAnimation;
-    }
-
     public Transform getTransform() {
 
-        return (Transform) this.getComponent(Transform.class);
+        return this.getComponent(Transform.class);
     }
-
 }

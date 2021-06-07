@@ -32,7 +32,7 @@ public class Transform extends Component {
 
     public void setScale(Vector2 scale) {
 
-        Collider collider = (Collider) super.getGameObject().getComponent(Collider.class);
+        Collider collider = super.getGameObject().getComponent(Collider.class);
         collider.resize(collider.getSize().x * scale.x, collider.getSize().y * scale.y);
 
         this.scale = scale;

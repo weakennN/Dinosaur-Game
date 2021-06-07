@@ -50,7 +50,7 @@ public class GameEngine extends Engine {
                     if (gameObject.isActive()) {
 
                         gameObject.update();
-                        Renderer.render(gameObject.render(), (Transform) gameObject.getComponent(Transform.class));
+                        Renderer.render(gameObject);
                     }
 
                 }
