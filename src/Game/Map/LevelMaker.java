@@ -1,6 +1,12 @@
 package Game.Map;
 
 import ECS.*;
+import ECS.Animator.Animation;
+import ECS.Animator.AnimationController;
+import ECS.Animator.Animator;
+import ECS.SprtieRenderer.SortingLayersContainer;
+import ECS.SprtieRenderer.Sprite;
+import ECS.SprtieRenderer.SpriteRenderer;
 import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalSpriteSheets;
 import Game.Common.GlobalVariables;
@@ -11,7 +17,6 @@ import UI.Designer;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
-import java.awt.*;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,6 +34,8 @@ public class LevelMaker {
         this.spaceInBetween = List.of(Designer.scene.getWidth(),
                 Designer.scene.getWidth() + 100, Designer.scene.getWidth() + 250);
         this.random = ThreadLocalRandom.current();
+        SortingLayersContainer.initContainer();
+
     }
 
     public void initStartObjects() {
@@ -68,14 +75,14 @@ public class LevelMaker {
 
     public void createGround(double posX, double posY) {
 
-
         Ground ground = new Ground(GlobalVariables.GROUND_TAG);
         Transform transform = new Transform(new Vector2(posX, posY), ground);
         ground.addComponent(transform);
         ground.addComponent(new Collider(ground, GlobalVariables.GROUND_SIZE_X, GlobalVariables.GROUND_SIZE_Y, new Transform(new Vector2(posX, posY + 20), ground)));
-        ground.addComponent(new SpriteRenderer(ground, new Sprite(new Image(GlobalAnimations.IMAGE_PATH + GlobalAnimations.GROUND))));
+        ground.addComponent(new SpriteRenderer(ground, new Sprite(new Image(getClass().getClassLoader().getResourceAsStream("Resources/" + GlobalAnimations.GROUND)))));
         ground.setActive(true);
         ground.start();
+        ground.getComponent(SpriteRenderer.class).setSortingLayer(SortingLayersContainer.getSortingLayerByName(GlobalVariables.BACKGROUND_SORTING_LAYER));
     }
 
     public Dinosaur getDinosaur() {

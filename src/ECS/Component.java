@@ -17,10 +17,11 @@ public abstract class Component {
         this.active = true;
     }
 
-    public abstract void update();
+    public void update() {
+
+    }
 
     public GameObject getGameObject() {
-
         return this.gameObject;
     }
 

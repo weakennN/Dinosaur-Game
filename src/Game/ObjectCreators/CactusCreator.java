@@ -1,9 +1,8 @@
 package Game.ObjectCreators;
 
-import ECS.Collider;
-import ECS.Sprite;
-import ECS.SpriteRenderer;
-import ECS.Transform;
+import ECS.*;
+import ECS.SprtieRenderer.Sprite;
+import ECS.SprtieRenderer.SpriteRenderer;
 import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Cactus;
@@ -35,7 +34,7 @@ public class CactusCreator extends GameObjectCreator {
         Cactus cactus = new Cactus(GlobalVariables.CACTUS_TAG, this.animation);
         cactus.addComponent(new Transform(new Vector2(posX, GlobalVariables.GROUND_POS_Y + 20 - this.sizeY), cactus));
         cactus.addComponent(new Collider(cactus, this.sizeX, this.sizeY, cactus.getTransform()));
-        cactus.addComponent(new SpriteRenderer(cactus, new Sprite(new Image(GlobalAnimations.IMAGE_PATH + this.animation))));
+        cactus.addComponent(new SpriteRenderer(cactus, new Sprite(new Image(getClass().getClassLoader().getResourceAsStream("Resources/" + animation)))));
         Transform transform = cactus.getTransform();
         double randomScale = this.getRandomScale();
         transform.setScale(new Vector2(randomScale, randomScale));
@@ -49,5 +48,4 @@ public class CactusCreator extends GameObjectCreator {
 
         return this.random.nextDouble(0.6, 1.2);
     }
-
 }

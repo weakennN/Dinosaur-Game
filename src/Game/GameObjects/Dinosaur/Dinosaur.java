@@ -1,10 +1,7 @@
 package Game.GameObjects.Dinosaur;
 
-import ECS.Animator;
+import ECS.Animator.Animator;
 import ECS.Rigidbody;
-import ECS.SpriteRenderer;
-import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 
@@ -27,7 +24,6 @@ public class Dinosaur extends GameObject {
         this.idle = true;
         this.running = false;
         super.setActive(true);
-        //    super.setCurrentAnimation(GlobalAnimations.DinosaurIdle);
         DinosaurState.running = true;
         this.manager = new DinosaurManager(this);
     }
@@ -39,14 +35,7 @@ public class Dinosaur extends GameObject {
         this.idle = false;
         this.running = false;
         this.getRigidbody().getVel().x = 2.5;
-      //  super.getComponent(Animator.class).setAnimation(2, 3);
 
-    }
-
-    @Override
-    public void update() {
-
-        super.updateComponents();
     }
 
     @Override
@@ -61,8 +50,6 @@ public class Dinosaur extends GameObject {
 
     public void jump() {
 
-        // super.setCurrentAnimation(GlobalAnimations.DinosaurIdle);
-        //super.getComponent(Animator.class).setAnimation(0, 0);
         super.getComponent(Animator.class).getAnimationController().playAnimation("idleAndJumping");
         this.getRigidbody().getVel().y = -2.5;
         this.jumping = true;

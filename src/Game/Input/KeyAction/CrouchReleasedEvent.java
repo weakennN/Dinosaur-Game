@@ -1,7 +1,6 @@
 package Game.Input.KeyAction;
 
-import ECS.Animator;
-import Game.Animator.GlobalAnimations;
+import ECS.Animator.Animator;
 import Game.Common.GlobalVariables;
 import Game.DinosaurGame;
 

@@ -1,20 +1,24 @@
 package Game.Sound;
 
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-import java.io.File;
+import java.net.URISyntaxException;
 
 public class SoundsManager {
 
-    private static AudioClip audioClip;
-
     public static void playSound(String sound) {
 
-        File file = new File(Sounds.SOUND_PATH + sound);
-        audioClip = new AudioClip(file.toURI().toString());
-        audioClip.setVolume(0.25);
-        audioClip.play();
-
+        String path = null;
+        try {
+            path = SoundsManager.class.getResource("/Resources/SoundEffects/" + sound).toURI().toString();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        Media media = new Media(path);
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(0.1);
+        mediaPlayer.play();
     }
 
 }

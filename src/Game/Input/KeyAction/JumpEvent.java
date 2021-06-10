@@ -27,7 +27,6 @@ public class JumpEvent extends KeyEvent {
 
                 SoundsManager.playSound(Sounds.DINOSAUR_JUMP);
                 dinosaurGame.getDinosaur().jump();
-
             }
 
         }

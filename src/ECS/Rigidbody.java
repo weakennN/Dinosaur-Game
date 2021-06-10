@@ -9,6 +9,7 @@ public class Rigidbody extends Component {
     private Vector2 vel;
     private Vector2 acc;
     private boolean applyGravity = true;
+    private int time = 0;
 
     public Rigidbody(GameObject gameObject) {
 

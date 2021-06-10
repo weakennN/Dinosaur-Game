@@ -17,6 +17,8 @@ import javafx.scene.text.Font;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 
 public class Designer {
 
@@ -44,7 +46,7 @@ public class Designer {
         initButtons();
         initLabels();
 
-        root.getChildren().addAll(canvas, restartButton, gameOverImage,buttonsBox,continueButton);
+        root.getChildren().addAll(canvas, restartButton, gameOverImage, buttonsBox, continueButton);
 
         gameOverImage.setLayoutY(restartButton.getLayoutY() - 80);
         gameOverImage.setLayoutX(restartButton.getLayoutX() - (gameOverImage.getImage().getWidth() / 2) + 20);
@@ -53,11 +55,11 @@ public class Designer {
         return scene;
     }
 
-    private static void initButtons(){
+    private static void initButtons() {
 
-        Button[] buttons = {restartButton,continueButton};
+        Button[] buttons = {restartButton, continueButton};
 
-        for (Button button : buttons){
+        for (Button button : buttons) {
 
             button.setStyle("-fx-background-color: transparent");
             button.setVisible(false);
@@ -73,23 +75,20 @@ public class Designer {
         continueButton.setGraphic(imgV);
     }
 
-    private static void initLabels(){
-
-        File file = new File("./src/Game/Resources/Font/defaultFont.ttf");
+    private static void initLabels() {
 
         scoreLabel = new Label();
         highScore = new Label(GlobalVariables.HIGH_SCORE_LABEL_DEFAULT_TEXT);
         highScore.setVisible(false);
 
-        buttonsBox.getChildren().addAll(scoreLabel,highScore);
+        buttonsBox.getChildren().addAll(scoreLabel, highScore);
         buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.setLayoutY(5);
-        try {
-            scoreLabel.setFont(Font.loadFont(new FileInputStream(file),15));
-            highScore.setFont(Font.loadFont(new FileInputStream(file),15));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        Font font = Font.loadFont(Designer.class.getResourceAsStream("/Resources/Font/defaultFont.ttf"),15);
+
+        scoreLabel.setFont(font);
+        highScore.setFont(font);
 
     }
 

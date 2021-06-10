@@ -1,6 +1,6 @@
 package Game.Common;
 
-import ECS.SpriteSheet;
+import ECS.SprtieRenderer.SpriteSheet;
 import Game.Animator.GlobalAnimations;
 
 import java.util.HashMap;

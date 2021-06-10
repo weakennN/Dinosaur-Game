@@ -1,9 +1,8 @@
 package Game.GameObjects;
 
-import ECS.Animator;
-import ECS.Collider;
-import ECS.Component;
-import ECS.Transform;
+import ECS.*;
+import ECS.Animator.Animator;
+import ECS.SprtieRenderer.SpriteRenderer;
 import Game.DinosaurGame;
 
 import java.util.ArrayList;
@@ -35,7 +34,10 @@ public abstract class GameObject {
         }
     }
 
-    public abstract void update();
+    public void update(){
+
+        this.updateComponents();
+    }
 
     public abstract void onCollisionEnter(GameObject other);
 
@@ -68,10 +70,8 @@ public abstract class GameObject {
         for (int i = 0; i < this.components.size(); i++) {
 
             Component c = this.components.get(i);
-
             c.update();
         }
-
     }
 
     public void destroy() {
@@ -79,10 +79,11 @@ public abstract class GameObject {
         Collider.colliders.remove(this.getComponent(Collider.class));
         DinosaurGame.gameObjects.remove(this);
 
-        if (this.getComponent(Animator.class) != null){
+        if (this.getComponent(Animator.class) != null) {
             this.getComponent(Animator.class).getAnimationController().stop();
         }
 
+        this.getComponent(SpriteRenderer.class).getSortingLayer().removeSpriteRenderer(this.getComponent(SpriteRenderer.class));
         this.components.clear();
     }
 
@@ -95,12 +96,10 @@ public abstract class GameObject {
     }
 
     public void setActive(boolean b) {
-
         this.active = b;
     }
 
     public Transform getTransform() {
-
         return this.getComponent(Transform.class);
     }
 }

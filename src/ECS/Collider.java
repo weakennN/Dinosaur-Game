@@ -12,6 +12,7 @@ public class Collider extends Component {
     private Vector2 size;
     private Vector2 center;
     private Vector2 halfSize;
+    private boolean checked;
     public static List<Collider> colliders = new ArrayList<>();
 
     public Collider(GameObject gameObject, double sizeX, double sizeY, Transform transform) {
@@ -21,31 +22,11 @@ public class Collider extends Component {
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.calculateCenter();
+        this.checked = false;
         colliders.add(this);
     }
 
-    @Override
-    public void update() {
-
-        for (int i = 0; i < colliders.size(); i++) {
-
-            Collider collider = colliders.get(i);
-
-            if (collider == this) {
-
-                continue;
-            }
-
-            if (this.checkCollision(collider)) {
-
-                this.getGameObject().onCollisionEnter(collider.getGameObject());
-            }
-
-        }
-
-    }
-
-    private boolean checkCollision(Collider collider) {
+    public boolean checkCollision(Collider collider) {
 
         this.calculateCenter();
         collider.calculateCenter();
@@ -101,6 +82,14 @@ public class Collider extends Component {
         this.size.x = sizeX;
         this.size.y = sizeY;
         this.calculateCenter();
+    }
+
+    public boolean isChecked() {
+        return this.checked;
+    }
+
+    public void setChecked(boolean b) {
+        this.checked = b;
     }
 
 }

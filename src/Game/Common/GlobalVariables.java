@@ -28,5 +28,7 @@ public class GlobalVariables {
     public final static double DINOSAUR_CROUCH_SIZE_X = 60;
     public final static double DINOSAUR_CROUCH_SIZE_Y = 40;
     public final static String HIGH_SCORE_LABEL_DEFAULT_TEXT = "HI ";
+    public static final String BACKGROUND_SORTING_LAYER = "background";
+    public static final String DEFAULT_SORTING_LAYER = "default";
 
 }

@@ -1,9 +1,8 @@
 package Game.GameObjects.Dinosaur;
 
-import ECS.Animator;
+import ECS.Animator.Animator;
 import ECS.Collider;
 import ECS.Rigidbody;
-import Game.Animator.GlobalAnimations;
 import Game.Sound.Sounds;
 import Game.Sound.SoundsManager;
 import Game.Validator.Validator;

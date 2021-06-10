@@ -19,12 +19,6 @@ public class Bat extends GameObject {
     }
 
     @Override
-    public void update() {
-
-        super.updateComponents();
-    }
-
-    @Override
     public void onCollisionEnter(GameObject other) {
 
     }

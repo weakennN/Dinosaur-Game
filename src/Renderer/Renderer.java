@@ -1,6 +1,8 @@
 package Renderer;
 
-import ECS.SpriteRenderer;
+import ECS.SprtieRenderer.SortingLayer;
+import ECS.SprtieRenderer.SortingLayersContainer;
+import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
 import Engine.GameEngine;
 import Game.GameObjects.GameObject;
@@ -9,17 +11,22 @@ import javafx.scene.paint.Color;
 
 public class Renderer {
 
-    public static void render(GameObject gameObject) {
+    public void render(GameObject gameObject) {
 
         SpriteRenderer spriteRenderer = gameObject.getComponent(SpriteRenderer.class);
         Transform transform = gameObject.getTransform();
+
+        if (spriteRenderer.getSprite() == null){
+
+            System.out.println();
+        }
 
         Designer.gc.drawImage(spriteRenderer.getSprite().getTexture(), transform.getPos().x, transform.getPos().y,
                 spriteRenderer.getSprite().getTexture().getWidth() * transform.getScale().x,
                 spriteRenderer.getSprite().getTexture().getHeight() * transform.getScale().y);
     }
 
-    public static void clear() {
+    public void clear() {
 
         Designer.gc.setFill(Color.WHITE);
 
@@ -28,4 +35,19 @@ public class Renderer {
 
     }
 
+    public void render() {
+
+        for (int i = 0; i < SortingLayersContainer.sortingLayers.size(); i++) {
+
+            SortingLayer sortingLayer = SortingLayersContainer.sortingLayers.get(i);
+
+            for (int j = 0; j < sortingLayer.getSpriteRenderers().size(); j++) {
+
+                GameObject gameObject = sortingLayer.getSpriteRenderers().get(j).getGameObject();
+
+                render(gameObject);
+            }
+
+        }
+    }
 }

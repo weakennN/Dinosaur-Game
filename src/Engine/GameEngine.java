@@ -1,6 +1,6 @@
 package Engine;
 
-import ECS.Transform;
+import ECS.Collider;
 import Game.Camera.Camera;
 import Game.GameObjects.GameObject;
 import Game.Game;
@@ -15,10 +15,12 @@ public class GameEngine extends Engine {
     private List<GameObject> gameObjects;
     private AnimationTimer gameLoop;
     public static Camera camera;
+    private Renderer renderer;
     private Game game;
 
     public GameEngine(Game game) {
 
+        this.renderer = new Renderer();
         this.game = game;
     }
 
@@ -35,26 +37,14 @@ public class GameEngine extends Engine {
                     return;
                 }
 
-                Renderer.clear();
+                renderer.clear();
                 game.update();
 
-                for (int i = 0; i < gameObjects.size(); i++) {
+                updateGameObjects();
 
-                    GameObject gameObject = gameObjects.get(i);
+                detectCollision();
 
-                    if (gameObject == null) {
-
-                        continue;
-                    }
-
-                    if (gameObject.isActive()) {
-
-                        gameObject.update();
-                        Renderer.render(gameObject);
-                    }
-
-                }
-
+                renderer.render();
                 camera.followTarget();
 
             }
@@ -63,6 +53,40 @@ public class GameEngine extends Engine {
 
         this.gameLoop.start();
 
+    }
+
+    private void updateGameObjects() {
+
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            GameObject gameObject = gameObjects.get(i);
+
+            if (gameObject.isActive()) {
+
+                gameObject.update();
+            }
+        }
+    }
+
+    private void detectCollision() {
+
+        for (int i = 0; i < Collider.colliders.size(); i++) {
+
+            Collider collider = Collider.colliders.get(i);
+
+            for (int j = 0; j < Collider.colliders.size(); j++) {
+
+                if (collider == Collider.colliders.get(j)) {
+                    continue;
+                }
+
+                if (collider.checkCollision(Collider.colliders.get(j))) {
+
+                    collider.getGameObject().onCollisionEnter(Collider.colliders.get(j).getGameObject());
+                }
+            }
+
+        }
     }
 
     @Override

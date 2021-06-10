@@ -14,12 +14,6 @@ public class Cactus extends GameObject {
     }
 
     @Override
-    public void update() {
-
-        super.updateComponents();
-    }
-
-    @Override
     public void onCollisionEnter(GameObject other) {
 
 

@@ -19,12 +19,6 @@ public class Ground extends GameObject {
     }
 
     @Override
-    public void update() {
-
-        super.updateComponents();
-    }
-
-    @Override
     public void onCollisionEnter(GameObject other) {
 
         if (other.getTag().equals(GlobalVariables.DINOSAUR_TAG)) {

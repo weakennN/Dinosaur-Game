@@ -15,10 +15,10 @@ A Java version of Chrome Offline Dinosaur game
 
 ## In-Game Screenshots
 
-![](src/Game/Resources/In%20Game%20Screenshots/Screenshot_1.png)
+![](src/Resources/In%20Game%20Screenshots/Screenshot_1.png)
 
 
-![](src/Game/Resources/In%20Game%20Screenshots/Screenshot_2.png)
+![](src/Resources/In%20Game%20Screenshots/Screenshot_2.png)
 
 
-![](src/Game/Resources/In%20Game%20Screenshots/Screenshot_3.png)
+![](src/Resources/In%20Game%20Screenshots/Screenshot_3.png)

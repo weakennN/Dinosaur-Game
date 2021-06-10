@@ -43,9 +43,4 @@ public class Transform extends Component {
         this.pos = pos;
     }
 
-    @Override
-    public void update() {
-
-    }
-
 }
